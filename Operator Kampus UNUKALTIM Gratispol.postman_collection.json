@@ -1,0 +1,257 @@
+{
+	"info": {
+		"_postman_id": "7c9f9b1b-3829-494e-bb90-eb54c17f6e8f",
+		"name": "Operator Kampus Gratispol",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20157208"
+	},
+	"item": [
+		{
+			"name": "Operator",
+			"item": [
+				{
+					"name": "Student",
+					"item": [
+						{
+							"name": "Check by NIK",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "apikey",
+										"value": "snpDKvuruyxo8kK576U7mkkCR145PxN2",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nik\" :[\r\n    \"6403025608060001\",\r\n\"6402164208060003\",\r\n\"6474011207050002\",\r\n\"6472030709050002\",\r\n\"6472034807060002\",\r\n\"6472085902040001\",\r\n\"6472032605060001\",\r\n\"6472050910010011\",\r\n\"3508081402020004\",\r\n\"6472064407050002\",\r\n\"6474012202060007\",\r\n\"6408051411050001\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host_beasiswa}}/beasiswa/v2/operator/check/nik",
+									"host": [
+										"{{host_beasiswa}}"
+									],
+									"path": [
+										"beasiswa",
+										"v2",
+										"operator",
+										"check",
+										"nik"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check All",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "apikey",
+										"value": "snpDKvuruyxo8kK576U7mkkCR145PxN2",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"degree\":[\"S1\",\"S2\"],\r\n  \"prodi_ids\":[\"cf784441-a166-4cb6-9e28-758bafd52fa9\"],\r\n  \"status_ids\":[1,2,3]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host_beasiswa}}/beasiswa/v2/operator/check/all",
+									"host": [
+										"{{host_beasiswa}}"
+									],
+									"path": [
+										"beasiswa",
+										"v2",
+										"operator",
+										"check",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Summary",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "apikey",
+										"value": "snpDKvuruyxo8kK576U7mkkCR145PxN2",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"degree\":[\"S1\",\"S2\"],\r\n  \"prodi_ids\":[\"cf784441-a166-4cb6-9e28-758bafd52fa9\"],\r\n  \"status_ids\":[1,2,3]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host_beasiswa}}/beasiswa/v2/operator/summary",
+									"host": [
+										"{{host_beasiswa}}"
+									],
+									"path": [
+										"beasiswa",
+										"v2",
+										"operator",
+										"summary"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Ref",
+					"item": [
+						{
+							"name": "Prodi",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_beasiswa_v2}}/beasiswa/v2/operator/ref/prodi?limit=1000&page=1",
+									"host": [
+										"{{host_beasiswa_v2}}"
+									],
+									"path": [
+										"beasiswa",
+										"v2",
+										"operator",
+										"ref",
+										"prodi"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "1000"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "degree",
+											"value": "S1,S2",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "psikolog",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_beasiswa_v2}}/beasiswa/v2/operator/ref/status?search=",
+									"host": [
+										"{{host_beasiswa_v2}}"
+									],
+									"path": [
+										"beasiswa",
+										"v2",
+										"operator",
+										"ref",
+										"status"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"pm.environment.set('token', res.data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "snpDKvuruyxo8kK576U7mkkCR145PxN2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"username\":\"operator.unu_kaltim\",\r\n   \"password\":\"8rJtiYLsSz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_auth}}/auth/v2/login",
+							"host": [
+								"{{host_auth}}"
+							],
+							"path": [
+								"auth",
+								"v2",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
